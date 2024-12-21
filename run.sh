@@ -22,6 +22,7 @@ createStructure() {
     touch src/splitIMG.py
     touch src/files.py
     touch src/dashboard.py
+    touch src/instaPost.py
 
     echo "Project structure created successfully."
 }
@@ -251,6 +252,27 @@ def dashboard():
 def files():
        return fk.render_template('files.html')
 
+EOL
+}
+
+createDashPy() {
+    echo -e "${YELLOW}💾 Creating instaPost Routes${NC}"
+    cat > src/instaPost.py << EOL
+from instagrapi import Client
+
+username = ""
+password = ""
+
+client = Client()
+client.login(username, password)
+
+image_path = "path.jpg"
+
+caption = "caption"
+
+client.photo_upload(image_path, caption=caption)
+
+print("Photo uploaded successfully!")
 EOL
 }
 
